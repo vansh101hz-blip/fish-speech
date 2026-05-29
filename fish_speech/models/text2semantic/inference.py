@@ -630,7 +630,9 @@ def main(
     output_dir: Path,
 ) -> None:
     os.makedirs(output_dir, exist_ok=True)
-    precision = torch.half if half else torch.bfloat16
+    
+    # FORCED COMPATIBILITY FOR T4 GPU: Hardcoded to strict float16 execution.
+    precision = torch.half
 
     if (
         prompt_text is not None
